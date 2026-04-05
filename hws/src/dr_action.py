@@ -215,6 +215,13 @@ def aso_decoder(aso_32, aso_context_number, dest_reg_id, aso_context_type, aso_f
             opcode_str = '%s (%s)' % (URISC_INSTRUCTION_ARR[opcode], opcode_str)
 
         _str += ', opcode: ' + opcode_str + ']'
+    elif aso_context_type == ASO_CONTEXT_TYPE_FIFO:
+        opcode = aso_fields & 0x3
+        opcode_str = hex(opcode)
+        if opcode < len(ASO_FIFO_INSTRUCTION_ARR):
+            opcode_str = f'{ASO_FIFO_INSTRUCTION_ARR[opcode]} ({opcode_str})'
+
+        _str += f' [opcode: {opcode_str}]'
 
     _str += '\n'
 
